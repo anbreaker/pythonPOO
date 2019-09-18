@@ -73,4 +73,9 @@ class Modulo:
             if a.estatusInscrito == True:
                 print('Matricula: {}, Nombre: {}, Apellido: {}, email: {}').format(a.numMatricula, a.nombre, a.apellido, a.email)
 
-                
+#Creacion de Objetos (self, numMatricula, nombre, apellido, email, estatusInscrito):
+al1 = Alumno(15,'Javier', 'Antúnez', 'antunez19@gmail.com', True)
+al2 = Alumno(15,'Ramon', 'Maldonado', 'maldonado@gmail.com', False)
+al3 = Alumno(15,'Jessica', 'Neves', 'antunez19@gmail.com', True)
+
+al1.agregarAlumno()
