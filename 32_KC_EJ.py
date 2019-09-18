@@ -13,7 +13,7 @@ En la misma clase Módulo deberá implementar métodos para
     mostrar todos los alumnos con estatusInscrito == True.
 '''
 
-class Alumno:
+class Alumno():
     #Atributos con Valores iniciales:
     numeroMatricula = 0
     nombre = ''
@@ -23,14 +23,14 @@ class Alumno:
 
 
     #constructores
-	def __init__(self, numMatricula, nombre, apellido, email, estatusInscrito):
+    def __init__(self, numMatricula, nombre, apellido, email, estatusInscrito):
         self.numMatricula = numMatricula
         self.nombre = nombre
         self.apellido = apellido
         self.email = email
         self.estatusInscrito = estatusInscrito
 
-class Modulo:
+class Modulo(Alumno):
     #Atributos
     listadoAlumnos = []
     fechaInicio = datetime.now() #Fecha actual
@@ -71,11 +71,22 @@ class Modulo:
     def inscritosTrue(self,inscritos):
         for a in self.listadoAlumnos:
             if a.estatusInscrito == True:
-                print('Matricula: {}, Nombre: {}, Apellido: {}, email: {}').format(a.numMatricula, a.nombre, a.apellido, a.email)
+                print('Matricula: {}, Nombre: {}, Apellido: {}, email: {}'.format(a.numMatricula, a.nombre, a.apellido, a.email))
 
 #Creacion de Objetos (self, numMatricula, nombre, apellido, email, estatusInscrito):
-al1 = Alumno(15,'Javier', 'Antúnez', 'antunez19@gmail.com', True)
-al2 = Alumno(15,'Ramon', 'Maldonado', 'maldonado@gmail.com', False)
-al3 = Alumno(15,'Jessica', 'Neves', 'antunez19@gmail.com', True)
+al1 = Modulo(15,'Javier', 'Antúnez', 'antunez19@gmail.com', True)
+al2 = Modulo(16,'Ramon', 'Maldonado', 'maldonado@gmail.com', False)
+al3 = Modulo(18,'Jessica', 'Neves', 'antunez19@gmail.com', True)
 
-al1.agregarAlumno()
+lista=[al1,al2,al3]
+
+al1.busarAlumByMatricula()
+
+'''
+%Debug z.py
+Traceback (most recent call last):
+  File "/home/anbreaker/Escritorio/z.py", line 77, in <module>
+    al1 = Modulo(15,'Javier', 'Antúnez', 'antunez19@gmail.com', True)
+TypeError: __init__() takes 4 positional arguments but 6 were given
+>>> 
+'''
