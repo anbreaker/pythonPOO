@@ -1,15 +1,15 @@
 class Vehiculos():
     def __init__(self, marca, modelo):
-        #Atributos
+        # Atributos
         self.marca = marca
         self.modelo = modelo
-        #Metodos
+        # Metodos
         self.enMarcha = False
         self.acelera = False
         self.frena = False
 
     def arrancarVehiculo(self):
-        print ('esta acelrando')
+        # print('esta acelerando')
         self.enMarcha = True
 
     def acelerar(self):
@@ -17,29 +17,62 @@ class Vehiculos():
 
     def frenar(self):
         self.frena = True
-        
 
-    #Parecido al "metodo toString de java"
+    # Parecido al "metodo toString de java"
     def estadoVehiculo(self):
-        print("Marca: {} \nModelo: {} \nenMarcha: {} \nAcelerando: {} \nFrenando: {}".format(self.marca, self.modelo, self.enMarcha, self.acelera, self.frena))
+        print("Marca: {} \nModelo: {} \nenMarcha: {} \nAcelerando: {} \nFrenando: {}".format(
+            self.marca, self.modelo, self.enMarcha, self.acelera, self.frena))
+
+
+class Furgoneta(Vehiculos):
+
+    def carga(self, cargar):
+        self.cargado = cargar
+        if(self.cargado):
+            return 'La Furgoneta esta cargada'
+        else:
+            return 'La Furgoneta NO esta cargada'
+
 
 class Moto(Vehiculos):
+    caballito = ""
 
     def hacerCaballito(self):
-        self.hacerCaballito = "Estoy haciendo un caballito"
+        self.caballito = "Estoy haciendo un caballito"
 
-    #Se sobreescribe el Metodo del padre con EL MISMO NOMBRE!!
-    def estadoVehiculoMoto(self):
-        print("Marca: {} \nModelo: {} \nenMarcha: {} \nAcelerando: {} \nFrenando: {} \nCaballito: {}".format(self.marca, self.modelo, self.enMarcha, self.acelera, self.frena, self.hacerCaballito))
+    # Se sobreescribe el Metodo del padre con EL MISMO NOMBRE!!
+    def estadoVehiculo(self):
+        print("Marca: {} \nModelo: {} \nenMarcha: {} \nAcelerando: {} \nFrenando: {} \n{}".format(
+            self.marca, self.modelo, self.enMarcha, self.acelera, self.frena, self.caballito))
 
 
-# miMoto1 = Moto('Kawasaki', 'Vulcan S')
+class VehiculosElectricos():
+    def __init__(self):
+        self.autonomia = 100
+
+    def cargarEnergia(self):
+        self.recargando = True
+
+
+class BicicletaElectrica(Vehiculos, VehiculosElectricos):
+    pass
+
+
+miMoto1 = Moto('Kawasaki', 'Vulcan S')
 # miMoto1.hacerCaballito()
-# miMoto1.estadoVehiculoMoto()
+miMoto1.estadoVehiculo()
 
 
 miMoto2 = Moto('Honda', 'CBR')
-miMoto2.arrancarVehiculo()
 miMoto2.acelerar()
+miMoto2.arrancarVehiculo()
+miMoto2.hacerCaballito()
 miMoto2.estadoVehiculo()
 
+miFurgoneta = Furgoneta('Renault', 'Kangoo')
+miFurgoneta.arrancarVehiculo()
+miFurgoneta.estadoVehiculo()
+print(miFurgoneta.carga(True))
+
+
+miBici = BicicletaElectrica('Orbea', 'Wild FS')
