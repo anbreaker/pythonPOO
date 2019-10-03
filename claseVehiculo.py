@@ -46,16 +46,22 @@ class Moto(Vehiculos):
             self.marca, self.modelo, self.enMarcha, self.acelera, self.frena, self.caballito))
 
 
-class VehiculosElectricos():
-    def __init__(self):
+class VehiculosElectricos(Vehiculos):
+    def __init__(self, marcaVehiculoElectrico, modeloVehiculoElectrico):
+        super().__init__(marcaVehiculoElectrico, modeloVehiculoElectrico)
+        self.marca = marcaVehiculoElectrico
+        self.modelo = modeloVehiculoElectrico
         self.autonomia = 100
 
     def cargarEnergia(self):
         self.recargando = True
 
 
-class BicicletaElectrica(Vehiculos, VehiculosElectricos):
-    pass
+class BicicletaElectrica(VehiculosElectricos, Vehiculos):
+    # Se sobreescribe el Metodo del padre con EL MISMO NOMBRE!!
+    def estadoVehiculo(self):
+        print("Marca: {} \nModelo: {} \nenMarcha: {} \nAcelerando: {} \nFrenando: {}".format(
+            self.marca, self.modelo, self.enMarcha, self.acelera, self.frena))
 
 
 miMoto1 = Moto('Kawasaki', 'Vulcan S')
@@ -76,3 +82,6 @@ print(miFurgoneta.carga(True))
 
 
 miBici = BicicletaElectrica('Orbea', 'Wild FS')
+miBici.acelerar()
+miBici.arrancarVehiculo()
+miBici.estadoVehiculo()
